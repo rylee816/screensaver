@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circles</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js"></script>
+    <!-- Load the Paper.js library -->
+<script type="text/javascript" src="paper/dist/paper-full.js"></script>
+
+    
+    <!-- <script type="text/paperscript" canvas="myCanvas">
+        function onResize(event) {
+            // Whenever the window is resized, recenter the path:
+            path.position = view.center;
+        }
+
+        var newCircle = new Path.Circle(new Point(0,0), 10);
+        newCircle.fillColor = "purple"
+    
+        for(var i = 0; i <= 10000; i++){
+            
+            
+            if (i % 50 == 0){
+                newCircle = new Path.Circle(new Point(i  , i  ), 10 + i / 50)
+                newCircle.fillColor = "red"
+                
+    
+            }
+            var copy = newCircle.clone();
+            copy.fullySelected = false;
+            copy.position.x += 500;
+            copy.smooth()
+            copy.fillColor = "orange"
+
+            var copy2 = copy.clone();
+            copy2.position.x += 500;
+            copy2.fillColor = "yellow"
+        }
+
+    </script> -->
+    <script type="text/paperscript" canvas="myCanvas">
+        function onResize(event) {
+            // Whenever the window is resized, recenter the path:
+            path.position = view.center;
+        }
+        var r = Math.round(Math.random() * 255);
+        var g = Math.round(Math.random() * 255);
+        var b = Math.round(Math.random() * 255);
+        var o = Math.random() + 1;
+        var randomColor = "rgba(" + r + ", " + g + ", " + b + ", " + o +")"
+        var colorArray = ["red", "orange", "yellow", "green", "blue", "purple", "teal", "grey", "pink", "black", "white"];
+        var randomBorder = colorArray[Math.floor(Math.random() * colorArray.length)]
+        
+    setInterval(function(){
+        for(var x = 0; x <= 2000; x += 100){
+            for(var y = 0; y <= 2000; y += 100){
+                
+                var circle = new Path.Circle(new Point(x , y), x * Math.random() / Math.round(Math.random() / .0001))
+                circle.fillColor = randomColor ;
+                circle.strokeColor = randomBorder;
+                circle.strokeWidth = Math.round(Math.random() * 100);
+                
+                
+          }
+           
+        }
+        
+    },1000)
+
+    </script>
+
+</head>
+<body>
+    
+    <canvas id="myCanvas" resize></canvas>
+</body>
+</html>
